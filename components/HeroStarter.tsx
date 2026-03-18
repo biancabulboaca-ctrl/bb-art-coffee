@@ -16,6 +16,7 @@ export default function HeroStarter() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap');
         
+
         @keyframes fadeInDown {
           from {
             opacity: 0;
@@ -48,18 +49,19 @@ export default function HeroStarter() {
         }
 
         .animate-title {
-          animation: fadeInDown 0.5s ease-out forwards;
+          animation: fadeInDown 1.5s ease-out forwards;
         }
 
         .animate-subtitle {
-          animation: fadeInDown 0.8s ease-out forwards;
+          animation: fadeInDown 1.5s ease-out forwards;
           opacity: 0;
         }
 
         .animate-buttons {
-          animation: fadeInUp 1.1s ease-out forwards;
+          animation: fadeInUp 1.5s ease-out forwards;
           opacity: 0;
         }
+
 
         .hero-title {
           font-family: 'Cormorant Garamond', serif;
@@ -87,12 +89,13 @@ export default function HeroStarter() {
         </div>
 
         {/* Content Container */}
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           {/* TITLU PRINCIPAL */}
           <h1
             className={`hero-title text-8xl font-bold mb-4 leading-tight ${
               isVisible ? "animate-title" : "opacity-0"
             }`}
+            style={{ color: '#F5E6C8' }}
           >
             BB Art Coffee
           </h1>
@@ -102,6 +105,7 @@ export default function HeroStarter() {
             className={`italic text-xl mb-12 letter-spacing: 0.05em ${
               isVisible ? "animate-subtitle" : "opacity-0"
             }`}
+            style={{ color: '#E8D5A3' }}
           >
             Arta la fiecare ceașcă
           </p>
@@ -121,6 +125,17 @@ export default function HeroStarter() {
             <button className="px-8 py-3 bg-transparent text-white font-semibold border-2 border-white rounded-lg hover:scale-105 transition-transform duration-300">
               Vizitează-ne
             </button>
+
+            {/* Button 3: Descoperă Arta */}
+            <a
+              href="/bb-art-studio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 bg-transparent text-white font-semibold border-2 border-white rounded-lg hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 inline-flex items-center justify-center"
+              style={{ minWidth: '10rem', textAlign: 'center' }}
+            >
+              Descoperă Arta
+            </a>
           </div>
         </div>
 
@@ -138,7 +153,11 @@ export default function HeroStarter() {
 
         {/* SCROLL ARROW */}
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30">
-          <ChevronDown size={32} className="scroll-arrow text-white/70" />
+          {/* Double chevron for scroll indicator */}
+          <div className="flex flex-col items-center">
+            <ChevronDown size={32} className="scroll-arrow text-teal-500" />
+            <ChevronDown size={32} className="scroll-arrow text-teal-500 -mt-3" />
+          </div>
         </div>
       </section>
     </>
