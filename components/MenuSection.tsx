@@ -1,4 +1,5 @@
 "use client";
+type MenuKey = "Cafea" | "Specialty" | "Patiserie" | "Băuturi";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -45,11 +46,11 @@ const TABS = Object.keys(MENU);
 import { useRef } from "react";
 
 export default function MenuSection() {
-  const [active, setActive] = useState(TABS[0]);
+  const [active, setActive] = useState<MenuKey>("Cafea");
   const [fadeKey, setFadeKey] = useState(0);
   const fadeRef = useRef(null);
   // Fade-in la schimbare tab
-  function handleTab(tab) {
+function handleTab(tab: MenuKey) {
     setActive(tab);
     setFadeKey(fadeKey + 1);
   }
@@ -98,7 +99,7 @@ export default function MenuSection() {
           {TABS.map((tab) => (
             <button
               key={tab}
-              onClick={() => handleTab(tab)}
+              onClick={() => handleTab(tab as MenuKey)}
               className={`menu-tab ${active === tab ? 'active' : 'inactive'}`}
             >
               {tab}
