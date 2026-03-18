@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 // 🎨 TIPOGRAFIE 100% SANS-SERIF - MODERN CLEAN
@@ -8,6 +8,14 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-heading",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+// Cormorant Garamond - Serif elegant pentru BB Art Coffee title
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-title-elegant",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -61,7 +69,7 @@ export default function RootLayout({
   return (
     <html lang="ro">
       <body
-        className={`${plusJakarta.variable} ${inter.variable} antialiased`}
+        className={`${plusJakarta.variable} ${cormorantGaramond.variable} ${inter.variable} antialiased`}
       >
         {children}
       </body>

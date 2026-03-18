@@ -1,33 +1,146 @@
-/**
- * 🎯 HERO STARTER - Versiunea simplă pentru cursanți
- *
- * Aceasta este versiunea MINIMALISTĂ de la care plecăm în curs.
- * Fără animații, fără video, fără JavaScript complex.
- * Doar HTML + Tailwind CSS = fundația de bază.
- */
+"use client";
+
+import { ChevronDown } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function HeroStarter() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-900 to-amber-700">
-      <div className="max-w-4xl mx-auto px-6 text-center text-white">
-        {/* TITLU PRINCIPAL */}
-        <h1 className="text-5xl md:text-7xl font-bold mb-6">
-          Vibe Caffè
-        </h1>
+    <>
+      {/* Google Fonts CSS pentru Cormorant Garamond */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap');
+        
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
-        {/* SUBTITLU */}
-        <p className="text-xl md:text-2xl mb-8 text-white/90">
-          Cafeaua ta preferată, perfect preparată
-        </p>
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
-        {/* BUTON CTA */}
-        <a
-          href="#contact"
-          className="inline-block px-8 py-4 bg-white text-amber-900 font-semibold rounded-lg hover:bg-amber-50 transition-colors"
+        @keyframes bounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        .animate-title {
+          animation: fadeInDown 0.5s ease-out forwards;
+        }
+
+        .animate-subtitle {
+          animation: fadeInDown 0.8s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-buttons {
+          animation: fadeInUp 1.1s ease-out forwards;
+          opacity: 0;
+        }
+
+        .hero-title {
+          font-family: 'Cormorant Garamond', serif;
+        }
+
+        .scroll-arrow {
+          animation: bounce 2s infinite;
+          transition: color 300ms ease;
+        }
+
+        .scroll-arrow:hover {
+          color: #0d9488;
+        }
+      `}</style>
+
+      <section className="relative min-h-screen overflow-hidden flex items-center justify-center">
+        {/* Background Image with Overlay */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/hero1.jpg')",
+          }}
         >
-          Începe acum
-        </a>
-      </div>
-    </section>
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+
+        {/* Content Container */}
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">
+          {/* TITLU PRINCIPAL */}
+          <h1
+            className={`hero-title text-8xl font-bold mb-4 leading-tight ${
+              isVisible ? "animate-title" : "opacity-0"
+            }`}
+          >
+            BB Art Coffee
+          </h1>
+
+          {/* SUBTITLU */}
+          <p
+            className={`italic text-xl mb-12 letter-spacing: 0.05em ${
+              isVisible ? "animate-subtitle" : "opacity-0"
+            }`}
+          >
+            Arta la fiecare ceașcă
+          </p>
+
+          {/* BUTTONS */}
+          <div
+            className={`flex flex-col sm:flex-row gap-6 justify-center ${
+              isVisible ? "animate-buttons" : "opacity-0"
+            }`}
+          >
+            {/* Button 1: Vezi Meniul */}
+            <button className="px-8 py-3 bg-teal-600 text-white font-semibold rounded-lg hover:scale-105 transition-transform duration-300">
+              Vezi Meniul
+            </button>
+
+            {/* Button 2: Vizitează-ne */}
+            <button className="px-8 py-3 bg-transparent text-white font-semibold border-2 border-white rounded-lg hover:scale-105 transition-transform duration-300">
+              Vizitează-ne
+            </button>
+          </div>
+        </div>
+
+        {/* VIDEO - Bottom Center */}
+        <video
+          className="absolute bottom-14 left-1/2 -translate-x-1/2 max-w-sm rounded-xl opacity-80 z-20"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/film.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* SCROLL ARROW */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30">
+          <ChevronDown size={32} className="scroll-arrow text-white/70" />
+        </div>
+      </section>
+    </>
   );
 }
