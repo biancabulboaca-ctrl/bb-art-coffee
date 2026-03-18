@@ -3,25 +3,27 @@ import { useState } from "react";
 
 const MENU = {
   Cafea: [
-    { name: "Espresso", price: 12, desc: "Shot intens de cafea proaspăt măcinată", img: "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400&q=80" },
-    { name: "Americano", price: 14, desc: "Espresso cu apă fierbinte, gust echilibrat", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" },
-    { name: "Cappuccino", price: 16, desc: "Espresso, lapte spumat, cremă fină", img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&q=80" },
-    { name: "Latte", price: 17, desc: "Espresso cu mult lapte cremos", img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=400&q=80" },
-    { name: "Flat White", price: 17, desc: "Dublu espresso, lapte catifelat", img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=400&q=80" },
+    { name: "Espresso", price: 12, desc: "Shot intens de cafea proaspăt măcinată", img: "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400" },
+    { name: "Americano", price: 14, desc: "Espresso cu apă fierbinte, gust echilibrat", img: "https://images.unsplash.com/photo-1551030173-122aabc4489c?w=400" },
+    { name: "Cappuccino", price: 16, desc: "Espresso, lapte spumat, cremă fină", img: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400" },
+    { name: "Latte", price: 17, desc: "Espresso cu mult lapte cremos", img: "https://images.unsplash.com/photo-1561047029-3000c68339ca?w=400" },
+    { name: "Flat White", price: 17, desc: "Dublu espresso, lapte catifelat", img: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400" },
   ],
   Specialty: [
-    { name: "V60 Pour Over", price: 18, desc: "Cafea de origine preparată manual", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=400&q=80" },
-    { name: "Cold Brew", price: 19, desc: "Infuzie rece, aromă delicată, servit cu gheață", img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=400&q=80" },
-    { name: "Affogato", price: 20, desc: "Espresso peste înghețată de vanilie", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" },
-    { name: "Matcha Latte", price: 21, desc: "Ceai matcha premium, lapte vegetal sau normal", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=400&q=80" },
-    { name: "Chai Latte", price: 19, desc: "Infuzie de condimente, lapte, miere", img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=400&q=80" },
+    { name: "Cold Brew", price: 18, desc: "Cafea preparată la rece, 12 ore", img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400" },
+    { name: "Nitro Cold Brew", price: 20, desc: "Cold brew cu azot, cremos și răcoritor", img: "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400" },
+    { name: "Matcha Latte", price: 19, desc: "Matcha japoneză cu lapte de ovăz", img: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400" },
+    { name: "Cortado", price: 15, desc: "Espresso echilibrat cu lapte cald", img: "https://images.unsplash.com/photo-1534778101976-62847782c213?w=400" },
+    { name: "Affogato", price: 22, desc: "Espresso fierbinte peste înghetată de vanilie", img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400" },
+    { name: "Oat Milk Latte", price: 19, desc: "Latte cremos cu lapte de ovăz", img: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=400" },
   ],
   Patiserie: [
-    { name: "Croissant cu unt", price: 10, desc: "Proaspăt, fraged, făcut în casă", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" },
-    { name: "Pain au Chocolat", price: 12, desc: "Croissant cu ciocolată belgiană", img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=400&q=80" },
-    { name: "Cheesecake", price: 15, desc: "Prăjitură cremoasă cu brânză fină", img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=400&q=80" },
-    { name: "Tartă cu fructe", price: 14, desc: "Aluat fraged, cremă de vanilie, fructe de sezon", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=400&q=80" },
-    { name: "Banana Bread", price: 13, desc: "Pâine dulce cu banane și nuci", img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=400&q=80" },
+    { name: "Ecler Ciocolată", price: 18, desc: "Rețetă clasică franceză, cremă fină de ciocolată", img: "https://media.istockphoto.com/id/182403573/ro/fotografie/ciocolata-topping-eclair-cu-umplutura-crema.webp?s=2048x2048&w=is&k=20&c=htmwfrE1Sf5hr_nbNGyYDdCmqvAgRUEvpaJXYOlQiO4=" },
+    { name: "Ecler Fructul Pasiunii", price: 20, desc: "Explozie de aromă tropicală", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=400" },
+    { name: "Ecler Caramel Sărat", price: 20, desc: "Dulce-sărat, irezistibil", img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=400" },
+    { name: "Carrot Cake", price: 22, desc: "Cel mai bun carrot cake din Sibiu", img: "https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?w=400" },
+    { name: "Cheesecake", price: 24, desc: "Cremos, cu blat de biscuiți", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=400" },
+    { name: "Gelato Artizanal", price: 15, desc: "Sorbet sau cremă, arome zilnice", img: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?w=400" },
   ],
   Băuturi: [
     { name: "Limonadă Fresh", price: 13, desc: "Lămâi stoarse, miere, mentă, gheață", img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=400&q=80" },
@@ -97,7 +99,10 @@ export default function MenuSection() {
             </button>
           ))}
         </div>
-        {/* Grid produse */}
+        {/* Grid produse + subtitle pentru Patiserie */}
+        {active === "Patiserie" && (
+          <p className="text-center text-sm text-gray-500 mb-6">În parteneriat cu Sucré Sibiu 🤍</p>
+        )}
         <div key={fadeKey} className="grid grid-cols-1 md:grid-cols-3 gap-8 menu-fade">
           {MENU[active].map(item => (
             <div key={item.name} className="bg-[#FAF7F2] rounded-2xl p-0 shadow hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col">
