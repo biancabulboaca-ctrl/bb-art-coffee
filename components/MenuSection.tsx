@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 
 const MENU = {
   Cafea: [
@@ -18,19 +19,24 @@ const MENU = {
     { name: "Oat Milk Latte", price: 19, desc: "Latte cremos cu lapte de ovăz", img: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=400" },
   ],
   Patiserie: [
-    { name: "Ecler Ciocolată", price: 18, desc: "Rețetă clasică franceză, cremă fină de ciocolată", img: "https://media.istockphoto.com/id/182403573/ro/fotografie/ciocolata-topping-eclair-cu-umplutura-crema.webp?s=2048x2048&w=is&k=20&c=htmwfrE1Sf5hr_nbNGyYDdCmqvAgRUEvpaJXYOlQiO4=" },
-    { name: "Ecler Fructul Pasiunii", price: 20, desc: "Explozie de aromă tropicală", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=400" },
-    { name: "Ecler Caramel Sărat", price: 20, desc: "Dulce-sărat, irezistibil", img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=400" },
-    { name: "Carrot Cake", price: 22, desc: "Cel mai bun carrot cake din Sibiu", img: "https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?w=400" },
-    { name: "Cheesecake", price: 24, desc: "Cremos, cu blat de biscuiți", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=400" },
-    { name: "Gelato Artizanal", price: 15, desc: "Sorbet sau cremă, arome zilnice", img: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?w=400" },
+    { name: "Ecler Ciocolată", price: 18, desc: "Rețetă clasică franceză, cremă fină de ciocolată", img: "/patiserie/ecler ciocolata.jpg" },
+    { name: "Ecler Fructul Pasiunii", price: 20, desc: "Explozie de aromă tropicală", img: "/patiserie/ecler fructul pasiunii.jpg" },
+    { name: "Ecler Caramel Sărat", price: 20, desc: "Dulce-sărat, irezistibil", img: "/patiserie/ecler caramel sarat.jpg" },
+    { name: "Carrot Cake", price: 22, desc: "Cel mai bun carrot cake din Sibiu", img: "/patiserie/carrot cake.jpg" },
+    { name: "Inghetata artizanala", price: 15, desc: "Sorbet sau cremă, arome zilnice", img: "/patiserie/inghetata.jpg" },
+    { name: "Medovik", price: 19, desc: "Tort cu foi de miere și cremă fină", img: "/patiserie/medovik.jpg" },
+    { name: "Pavlova", price: 23, desc: "Bezea crocantă, cremă și fructe proaspete", img: "/patiserie/pavlova.jpg" },
   ],
   Băuturi: [
-    { name: "Limonadă Fresh", price: 13, desc: "Lămâi stoarse, miere, mentă, gheață", img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=400&q=80" },
-    { name: "Ceaiuri Naturale", price: 12, desc: "Selecție de ceaiuri din plante, servite cald sau rece", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=400&q=80" },
-    { name: "Ciocolată Caldă", price: 15, desc: "Ciocolată belgiană, lapte proaspăt", img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=400&q=80" },
-    { name: "Apă plată/minerală", price: 7, desc: "Dorna, Borsec, 500ml", img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=400&q=80" },
-    { name: "Suc natural", price: 14, desc: "Portocale, mere sau mix, 100% natural", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" },
+    { name: "Limonadă Clasică", price: 12, desc: "Lămâie, mentă, sirop de trestie", img: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&h=300&fit=crop" },
+    { name: "Limonadă Lavandă & Afine", price: 15, desc: "Florală, răcoritoare, violet", img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=300&fit=crop" },
+    { name: "Suc de Portocale Proaspăt", price: 13, desc: "Stors la comandă", img: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=300&fit=crop" },
+    { name: "Suc Morcov-Ghimbir-Lămâie", price: 14, desc: "Energizant natural", img: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&h=300&fit=crop" },
+    { name: "Ceai Earl Grey", price: 10, desc: "Bergamot, floral, cald", img: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=300&fit=crop" },
+    { name: "Ceai Rooibos & Vanilie", price: 11, desc: "Fără cofeină, dulce natural", img: "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=400&h=300&fit=crop" },
+    { name: "Smoothie Verde", price: 20, desc: "Spanac, banana, măr, ghimbir", img: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=400&h=300&fit=crop" },
+    { name: "Smoothie Berry", price: 20, desc: "Căpșuni, zmeură, afine, iaurt", img: "https://images.unsplash.com/photo-1502741224143-90386d7f8c82?w=400&h=300&fit=crop" },
+    { name: "Smoothie Tropical", price: 20, desc: "Mango, ananas, cocos, lime", img: "https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=400&h=300&fit=crop" },
   ],
 };
 
@@ -107,7 +113,29 @@ export default function MenuSection() {
           {MENU[active].map(item => (
             <div key={item.name} className="bg-[#FAF7F2] rounded-2xl p-0 shadow hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col">
               <div className="w-full aspect-[4/3] overflow-hidden rounded-xl">
-                <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
+                {active === "Patiserie" ? (
+                  item.img ? (
+                    <Image
+                      src={item.img}
+                      alt={item.name}
+                      width={400}
+                      height={300}
+                      className="object-cover w-full h-full"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-[#f3ede7] flex items-center justify-center text-gray-400 text-lg">Fără imagine</div>
+                  )
+                ) : active === "Băuturi" ? (
+                  <Image
+                    src={item.img}
+                    alt={item.name}
+                    width={400}
+                    height={300}
+                    className="object-cover w-full h-full"
+                  />
+                ) : (
+                  <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
+                )}
               </div>
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div className="flex items-center justify-between mb-2">
