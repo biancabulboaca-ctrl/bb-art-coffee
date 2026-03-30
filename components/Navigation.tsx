@@ -28,14 +28,20 @@ export default function Navigation() {
           </span>
         </a>
 
-        {/* Buton rezervare */}
-        <a href="/rezervari"
-          className="px-5 py-2.5 text-white text-sm font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
-          style={{ background: '#F97316', boxShadow: '0 4px 14px rgba(249,115,22,0.35)' }}
-          onMouseEnter={e => (e.currentTarget.style.background = '#EA580C')}
-          onMouseLeave={e => (e.currentTarget.style.background = '#F97316')}>
-          Rezervă acum
-        </a>
+        {/* Butoane dreapta */}
+        <div className="flex items-center gap-2">
+          <a href="/admin"
+            className="px-3 py-2.5 text-white/80 text-xs font-semibold rounded-lg border border-white/30 bg-white/10 hover:bg-teal-500 hover:border-teal-500 hover:text-white transition-all duration-300">
+            Login
+          </a>
+          <a href="/rezervari"
+            className="px-5 py-2.5 text-white text-sm font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
+            style={{ background: '#F97316', boxShadow: '0 4px 14px rgba(249,115,22,0.35)' }}
+            onMouseEnter={e => (e.currentTarget.style.background = '#EA580C')}
+            onMouseLeave={e => (e.currentTarget.style.background = '#F97316')}>
+            Rezervă acum
+          </a>
+        </div>
 
       </div>
     </nav>
