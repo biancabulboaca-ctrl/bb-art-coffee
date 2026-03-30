@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+html { scroll-behavior: smooth; }
+
 /* 🌙 DARK MODE - Class Strategy (not media query) */
 @variant dark (&:where(.dark, .dark *));
 
