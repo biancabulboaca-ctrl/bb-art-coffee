@@ -37,7 +37,7 @@ export default function MenuSection() {
   const catActiva = categorii.find(c => c.id === activa);
 
   return (
-    <section className="py-20 px-6 bg-white">
+    <section id="meniu" className="py-20 px-6 bg-white">
       <style>{`
         .menu-tab { border-width:2px; border-radius:0.5rem; font-weight:600; font-size:1.1rem; padding:0.75rem 2rem; transition:all 0.3s; }
         .menu-tab.active { background:#0D9488; color:#fff; border-color:#0D9488; transform:scale(1.05); }

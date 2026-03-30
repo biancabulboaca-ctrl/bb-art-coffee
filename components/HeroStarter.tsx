@@ -117,9 +117,9 @@ export default function HeroStarter() {
             }`}
           >
             {/* Button 1: Vezi Meniul */}
-            <button className="px-8 py-3 bg-transparent text-white font-semibold border-2 border-white rounded-lg hover:bg-teal-500 hover:border-teal-500 transition-all duration-300 hover:scale-105">
+            <a href="#meniu" className="px-8 py-3 bg-transparent text-white font-semibold border-2 border-white rounded-lg hover:bg-teal-500 hover:border-teal-500 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center">
               Vezi Meniul
-            </button>
+            </a>
 
             {/* Button 2: Vizitează-ne */}
             <a href="#contact" className="px-8 py-3 bg-transparent text-white font-semibold border-2 border-white rounded-lg hover:bg-teal-500 hover:border-teal-500 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center">
