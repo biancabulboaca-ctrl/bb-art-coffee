@@ -14,6 +14,7 @@ export default function ContactSection() {
   }, []);
   return (
     <section
+      id="contact"
       ref={ref}
       className={`py-20 px-6 bg-[#f3ede7] transition-opacity duration-1000 ${visible ? "opacity-100" : "opacity-0"}`}
     >

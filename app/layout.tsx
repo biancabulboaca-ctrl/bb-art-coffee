@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+import Navigation from "@/components/Navigation";
 
 // 🎨 TIPOGRAFIE 100% SANS-SERIF - MODERN CLEAN
 // Plus Jakarta Sans - Sans-serif modern pentru TOATE titlurile (H1-H6)
@@ -71,6 +72,7 @@ export default function RootLayout({
       <body
         className={`${plusJakarta.variable} ${cormorantGaramond.variable} ${inter.variable} antialiased`}
       >
+        <Navigation />
         {children}
       </body>
     </html>

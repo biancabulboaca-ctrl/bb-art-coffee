@@ -117,23 +117,19 @@ export default function HeroStarter() {
             }`}
           >
             {/* Button 1: Vezi Meniul */}
-            <button className="px-8 py-3 bg-teal-600 text-white font-semibold rounded-lg hover:scale-105 transition-transform duration-300">
+            <button className="px-8 py-3 bg-transparent text-white font-semibold border-2 border-white rounded-lg hover:bg-teal-500 hover:border-teal-500 transition-all duration-300 hover:scale-105">
               Vezi Meniul
             </button>
 
             {/* Button 2: Vizitează-ne */}
-            <button className="px-8 py-3 bg-transparent text-white font-semibold border-2 border-white rounded-lg hover:scale-105 transition-transform duration-300">
+            <a href="#contact" className="px-8 py-3 bg-transparent text-white font-semibold border-2 border-white rounded-lg hover:bg-teal-500 hover:border-teal-500 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center">
               Vizitează-ne
-            </button>
+            </a>
 
             {/* Button 3: Descoperă Arta */}
-            <a
-              href="/bb-art-studio"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 bg-transparent text-white font-semibold border-2 border-white rounded-lg hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 inline-flex items-center justify-center"
-              style={{ minWidth: '10rem', textAlign: 'center' }}
-            >
+            <a href="/bb-art-studio" target="_blank" rel="noopener noreferrer"
+              className="px-8 py-3 bg-transparent text-white font-semibold border-2 border-white rounded-lg hover:bg-teal-500 hover:border-teal-500 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center"
+              style={{ minWidth: '10rem', textAlign: 'center' }}>
               Descoperă Arta
             </a>
           </div>
