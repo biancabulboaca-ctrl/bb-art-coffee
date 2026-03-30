@@ -30,7 +30,10 @@ export default function Navigation() {
 
         {/* Buton rezervare */}
         <a href="/rezervari"
-          className="px-5 py-2.5 bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg shadow-orange-500/30">
+          className="px-5 py-2.5 text-white text-sm font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
+          style={{ background: '#F97316', boxShadow: '0 4px 14px rgba(249,115,22,0.35)' }}
+          onMouseEnter={e => (e.currentTarget.style.background = '#EA580C')}
+          onMouseLeave={e => (e.currentTarget.style.background = '#F97316')}>
           Rezervă acum
         </a>
 

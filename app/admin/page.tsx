@@ -28,12 +28,64 @@ function dataFrumos(str: string) {
   return `${z} ${LUNI[Number(m) - 1]} ${y}`;
 }
 
+const PAROLA_ADMIN = 'bbartcaffe2024';
+
+function LoginAdmin({ onSuccess }: { onSuccess: () => void }) {
+  const [parola, setParola] = useState('');
+  const [eroare, setEroare] = useState(false);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (parola === PAROLA_ADMIN) {
+      sessionStorage.setItem('admin_auth', '1');
+      onSuccess();
+    } else {
+      setEroare(true);
+      setParola('');
+    }
+  }
+
+  return (
+    <main className="min-h-screen flex items-center justify-center px-4"
+      style={{ background: 'linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%)' }}>
+      <div className="w-full max-w-sm bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-8">
+        <h1 className="text-2xl font-bold text-white mb-1" style={{ fontFamily: 'var(--font-title-elegant)' }}>
+          Admin
+        </h1>
+        <p className="text-white/40 text-xs mb-6 tracking-wide">Introdu parola pentru acces</p>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            type="password"
+            value={parola}
+            onChange={e => { setParola(e.target.value); setEroare(false); }}
+            placeholder="Parolă"
+            autoFocus
+            className={`w-full px-4 py-3 bg-white/10 border rounded-xl text-white text-sm placeholder-white/30 outline-none focus:bg-white/15 transition-all
+              ${eroare ? 'border-red-400/60' : 'border-white/15 focus:border-teal-400/60'}`}
+          />
+          {eroare && <p className="text-red-400 text-xs -mt-2">Parolă incorectă.</p>}
+          <button type="submit"
+            className="w-full py-3 bg-teal-500 text-white rounded-xl font-semibold text-sm hover:bg-teal-400 transition-all">
+            Intră
+          </button>
+        </form>
+      </div>
+    </main>
+  );
+}
+
 export default function AdminPage() {
+  const [autentificat, setAutentificat] = useState(false);
   const [rezervari, setRezervari]   = useState<Rezervare[]>([]);
   const [loading, setLoading]       = useState(true);
   const [actiune, setActiune]       = useState<number | null>(null);
   const [filtru, setFiltru]         = useState<string>('toate');
   const [cautare, setCautare]       = useState('');
+
+  useEffect(() => {
+    if (sessionStorage.getItem('admin_auth') === '1') setAutentificat(true);
+    else setLoading(false);
+  }, []);
 
   async function incarca() {
     setLoading(true);
@@ -43,7 +95,7 @@ export default function AdminPage() {
     setLoading(false);
   }
 
-  useEffect(() => { incarca(); }, []);
+  useEffect(() => { if (autentificat) incarca(); }, [autentificat]);
 
   async function schimbaStatus(id: number, status: string) {
     setActiune(id);
@@ -80,6 +132,8 @@ export default function AdminPage() {
     confirmat:      rezervari.filter(r => r.status === 'confirmat').length,
     respins:        rezervari.filter(r => r.status === 'respins').length,
   };
+
+  if (!autentificat) return <LoginAdmin onSuccess={() => setAutentificat(true)} />;
 
   return (
     <main className="min-h-screen px-4 py-10"

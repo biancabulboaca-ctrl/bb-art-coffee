@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { ChevronLeft, ChevronRight, Loader2, CheckCircle } from 'lucide-react';
-import { salveazaRezervare } from '@/lib/supabase';
 import CoffeeLogo from '@/components/CoffeeLogo';
 
 const LUNI = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
@@ -43,18 +43,20 @@ export default function RezervariPage() {
   const [confirmat, setConfirmat]     = useState(false);
   const [campErori, setCampErori]     = useState({ email: '', telefon: '' });
 
-  const REGEX_EMAIL   = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  const REGEX_TELEFON = /^(\+4|0)(7[0-9]{8}|[23][0-9]{8})$/;
+  // Email: caractere valide înainte de @, @ o singură dată, domeniu.extensie(min 2 car)
+  const REGEX_EMAIL = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
 
   function valideazaEmail(val: string) {
     if (!val) return 'Email-ul este obligatoriu.';
+    if ((val.match(/@/g) || []).length !== 1) return 'Email-ul trebuie să conțină un singur @.';
     if (!REGEX_EMAIL.test(val)) return 'Introdu un email valid (ex: ana@email.ro).';
     return '';
   }
+
   function valideazaTelefon(val: string) {
-    const curat = val.replace(/\s|-/g, '');
+    const curat = val.replace(/[\s\-()]/g, '');
     if (!curat) return 'Telefonul este obligatoriu.';
-    if (!REGEX_TELEFON.test(curat)) return 'Introdu un număr valid (ex: 0722 123 456).';
+    if (!/^07\d{8}$/.test(curat)) return 'Numărul trebuie să înceapă cu 07 urmat de 8 cifre.';
     return '';
   }
   function valideazaForm() {
@@ -101,7 +103,13 @@ export default function RezervariPage() {
     if (!valideazaForm()) return;
     setLoading(true); setEroare('');
     try {
-      await salveazaRezervare({ ...form, data: selectedDate, ora: selectedOra });
+      const res = await fetch('/api/rezervari', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, data: selectedDate, ora: selectedOra }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.eroare || 'Eroare. Încearcă din nou.');
       setConfirmat(true);
     } catch (err: unknown) {
       setEroare(err instanceof Error ? err.message : 'Eroare. Încearcă din nou.');
@@ -137,45 +145,38 @@ export default function RezervariPage() {
             className="py-3 border border-orange-400/50 text-orange-400 rounded-2xl text-sm font-semibold hover:bg-orange-500/20 transition-all">
             + Rezervare nouă
           </button>
-          <a href="/" className="py-3 bg-teal-500 text-white rounded-2xl text-sm font-semibold hover:bg-teal-400 transition-all text-center">
+          <Link href="/" className="py-3 bg-teal-500 text-white rounded-2xl text-sm font-semibold hover:bg-teal-400 transition-all text-center">
             Înapoi la site
-          </a>
+          </Link>
         </div>
       </div>
     </main>
   );
 
   return (
-    <main className="min-h-screen flex items-center justify-center px-4 py-12"
+    <main className="min-h-screen flex items-center justify-center px-4 py-4"
       style={{ background: 'linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%)' }}>
       <div className="w-full max-w-lg">
 
-        {/* Header cu logo și link înapoi */}
-        <div className="flex items-center justify-between mb-5">
-          <a href="/" className="flex items-center gap-2.5 group">
-            <CoffeeLogo size={38} />
-            <span className="text-white/70 font-semibold text-sm tracking-wide group-hover:text-teal-400 transition-colors"
-              style={{ fontFamily: 'var(--font-title-elegant)' }}>
-              BB Art Caffè
-            </span>
-          </a>
-          <a href="/" className="text-xs text-white/30 hover:text-teal-400 transition-colors tracking-widest uppercase">
+        {/* Link înapoi la site */}
+        <div className="flex justify-end mb-3">
+          <Link href="/" className="text-xs text-white/30 hover:text-teal-400 transition-colors tracking-widest uppercase">
             ← Site
-          </a>
+          </Link>
         </div>
 
         {/* Card principal */}
         <div className="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
 
           {/* Header card */}
-          <div className="px-6 pt-6 pb-4 border-b border-white/10">
-            <h1 className="text-3xl font-bold text-white" style={{ fontFamily:'var(--font-title-elegant)' }}>
+          <div className="px-5 pt-4 pb-3 border-b border-white/10">
+            <h1 className="text-2xl font-bold text-white" style={{ fontFamily:'var(--font-title-elegant)' }}>
               Rezervare masă
             </h1>
-            <p className="text-white/40 text-xs mt-1 tracking-wide">Completează în 3 pași simpli</p>
+            <p className="text-white/40 text-xs mt-0.5 tracking-wide">Completează în 3 pași simpli</p>
 
             {/* Pași */}
-            <div className="flex items-center mt-4">
+            <div className="flex items-center mt-3">
               {[1,2,3].map((s,i) => (
                 <div key={s} className="flex items-center flex-1">
                   <div className="flex items-center gap-2">
@@ -197,13 +198,13 @@ export default function RezervariPage() {
           </div>
 
           {/* Body card */}
-          <div className="px-6 py-5">
+          <div className="px-5 py-4">
 
             {/* ── PAS 1: DATA ── */}
             {step===1 && (
               <div>
                 {/* Zile rapide */}
-                <div className="flex gap-1.5 flex-wrap mb-4">
+                <div className="flex gap-1 flex-wrap mb-3">
                   {zileRapide.map(({str,label,d}) => (
                     <button key={str}
                       onClick={() => selectData(str, d.getFullYear(), d.getMonth())}
@@ -217,7 +218,7 @@ export default function RezervariPage() {
                 </div>
 
                 {/* Calendar nav */}
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-2">
                   <button onClick={() => navLuna(-1)} disabled={prevDisabled}
                     className="w-8 h-8 flex items-center justify-center rounded-xl border border-white/10 text-white/50 hover:border-teal-400/50 hover:text-teal-400 disabled:opacity-20 disabled:cursor-default transition-all">
                     <ChevronLeft size={16} />
@@ -232,9 +233,9 @@ export default function RezervariPage() {
                 </div>
 
                 {/* Grid calendar */}
-                <div className="grid grid-cols-7 gap-1 mb-5">
+                <div className="grid grid-cols-7 gap-0.5 mb-3">
                   {ZILE.map(z => (
-                    <div key={z} className="text-center text-xs text-white/25 uppercase tracking-wider py-1">{z}</div>
+                    <div key={z} className="text-center text-xs text-white/25 uppercase tracking-wider py-0.5">{z}</div>
                   ))}
                   {cells.map((zi, idx) => {
                     if (!zi) return <div key={idx} />;
@@ -245,7 +246,7 @@ export default function RezervariPage() {
                     const selected = selectedDate === str;
                     return (
                       <button key={idx} onClick={() => !disabled && selectData(str, calYear, calMonth)} disabled={disabled}
-                        className={`aspect-square flex items-center justify-center text-xs rounded-lg transition-all duration-150 font-medium
+                        className={`h-8 flex items-center justify-center text-xs rounded-lg transition-all duration-150 font-medium
                           ${selected  ? 'bg-teal-500 text-white shadow-md shadow-teal-500/40'
                             : disabled ? 'text-white/15 cursor-default'
                             : isToday  ? 'text-orange-400 font-bold hover:bg-white/10'
@@ -257,7 +258,7 @@ export default function RezervariPage() {
                 </div>
 
                 <button onClick={() => setStep(2)} disabled={!selectedDate}
-                  className="w-full py-3 bg-teal-500 text-white rounded-2xl font-semibold text-sm hover:bg-teal-400 disabled:bg-white/10 disabled:text-white/20 transition-all shadow-lg shadow-teal-500/20">
+                  className="w-full py-2.5 bg-teal-500 text-white rounded-2xl font-semibold text-sm hover:bg-teal-400 disabled:bg-white/10 disabled:text-white/20 transition-all shadow-lg shadow-teal-500/20">
                   Continuă →
                 </button>
               </div>
