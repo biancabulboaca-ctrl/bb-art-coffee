@@ -17,17 +17,17 @@ const EXPOZITIE = {
 const ARTIST_STATEMENT = 'Pictez de când mă știu, iar culoarea a fost mereu un spațiu de liniște și claritate. Practica mea se înscrie într-un registru aproape de „open impressionism", unde gestul rămâne liber, dar compoziția este atent construită. Lucrez în straturi: un strat de bază din acrilic, care fixează structura și tensiunea cromatică, peste care intervin cu accente și „highlights" în ulei, pentru profunzime, lumină și vibrație tactilă.';
 
 const TABLOURI = [
-  { titlu: 'Ina și moliile',     mediu: 'Acrili, ulei',          dimensiuni: '70×80 cm', an: 2025, imagine: '/art/ina-si-moliile.jpg' },
-  { titlu: 'Iris și calul',      mediu: 'Acrili, ulei',          dimensiuni: '70×80 cm', an: 2025, imagine: '/art/iris-si-calul.jpg' },
-  { titlu: '6 Pui',              mediu: 'Acrili, ulei, pastel',  dimensiuni: '80×60 cm', an: 2025, imagine: '/art/6-pui.jpg' },
-  { titlu: 'Andrei Rădașcă',     mediu: 'Acrili, ulei, pastel',  dimensiuni: '70×50 cm', an: 2025, imagine: '/art/andrei-radasca.jpg' },
-  { titlu: 'Fetița curcubeu',    mediu: 'Acrili, ulei, pastel',  dimensiuni: '70×50 cm', an: 2025, imagine: '/art/fetita-curcubeu.jpg' },
-  { titlu: '2 Dinți și 6 păsări',mediu: 'Acrili, ulei, pastel',  dimensiuni: '80×60 cm', an: 2025, imagine: '/art/2-dinti-si-6-pasari.jpg' },
-  { titlu: '2 Pui',              mediu: 'Acrili, ulei, pastel',  dimensiuni: '40×40 cm', an: 2025, imagine: '/art/2-pui.jpg' },
-  { titlu: 'Ina Lina',           mediu: 'Acrili, ulei, pastel',  dimensiuni: '40×40 cm', an: 2025, imagine: '/art/ina-lina.jpg' },
-  { titlu: 'Plasture pe suflet', mediu: 'Acrili, ulei, pastel',  dimensiuni: '40×40 cm', an: 2025, imagine: '/art/plasture-pe-suflet.jpg' },
-  { titlu: '2 Pisicoase',        mediu: 'Acrili, ulei, pastel',  dimensiuni: '40×40 cm', an: 2025, imagine: '/art/2-pisicoase.jpg' },
-  { titlu: 'Mama Bună',          mediu: 'Acrili, ulei, pastel',  dimensiuni: '40×40 cm', an: 2025, imagine: '/art/mama-buna.jpg' },
+  { titlu: 'Ina și moliile',      mediu: 'Acrili, ulei',         dimensiuni: '70×80 cm', an: 2025, imagine: '/art/Ina si moliile 70x80.png' },
+  { titlu: 'Iris și Tesa',        mediu: 'Acrili, ulei',         dimensiuni: '70×80 cm', an: 2025, imagine: '/art/Iris si Tesa 70x80.png' },
+  { titlu: '6 Pui',               mediu: 'Acrili, ulei, pastel', dimensiuni: '80×60 cm', an: 2025, imagine: '/art/6 Pui 80x60.png' },
+  { titlu: 'Andrei Rădașcă',      mediu: 'Acrili, ulei, pastel', dimensiuni: '70×50 cm', an: 2025, imagine: '/art/Andrei Radasca 70x50.png' },
+  { titlu: 'Fetița curcubeu',     mediu: 'Acrili, ulei, pastel', dimensiuni: '70×80 cm', an: 2025, imagine: '/art/Fetita curcubeu 70x80.png' },
+  { titlu: '2 Dinți și 7 păsări', mediu: 'Acrili, ulei, pastel', dimensiuni: '70×50 cm', an: 2025, imagine: '/art/2 Dinti si 7 pasari 70x50.png' },
+  { titlu: '2 Pui',               mediu: 'Acrili, ulei, pastel', dimensiuni: '40×40 cm', an: 2025, imagine: '/art/2 Pui 40x40.png' },
+  { titlu: 'Ina Lina',            mediu: 'Acrili, ulei, pastel', dimensiuni: '40×40 cm', an: 2025, imagine: '/art/Ina Lina 40x40.png' },
+  { titlu: 'Plasture pe suflet',  mediu: 'Acrili, ulei, pastel', dimensiuni: '40×40 cm', an: 2025, imagine: '/art/Plasture pe suflet40x40.png' },
+  { titlu: '2 Pisicoase',         mediu: 'Acrili, ulei, pastel', dimensiuni: '40×40 cm', an: 2025, imagine: '/art/2 Pisicoase.png' },
+  { titlu: 'Mama Bună',           mediu: 'Acrili, ulei, pastel', dimensiuni: '40×40 cm', an: 2025, imagine: '/art/Mama Buna 40x40.png' },
 ];
 
 function Tablou({ t }: { t: typeof TABLOURI[0] }) {
