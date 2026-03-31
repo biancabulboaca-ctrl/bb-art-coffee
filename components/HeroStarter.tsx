@@ -137,7 +137,7 @@ export default function HeroStarter() {
 
         {/* VIDEO - Bottom Center */}
         <video
-          className="absolute bottom-14 left-1/2 -translate-x-1/2 max-w-sm rounded-xl opacity-80 z-20"
+          className="absolute bottom-0 sm:bottom-14 left-1/2 -translate-x-1/2 max-w-[160px] sm:max-w-sm rounded-xl opacity-80 z-20"
           autoPlay
           loop
           muted
